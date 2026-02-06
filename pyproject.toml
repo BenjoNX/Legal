@@ -1,0 +1,82 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "droit-francais-mcp"
+version = "1.2.1"
+description = "Serveur MCP pour interroger les API publiques du droit français (Légifrance et JudiLibre)"
+authors = [
+    {name = "Jean-Michel Tanguy"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.8"
+keywords = ["mcp", "legifrance", "judilibre", "droit", "juridique", "france", "api"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Legal Industry",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Legal",
+]
+
+dependencies = [
+    "fastmcp>=2.12.3",
+    "requests>=2.32.5",
+    "python-dotenv>=1.1.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.4.2",
+    "pytest-cov>=6.0.0",
+    "pytest-asyncio>=0.25.2",
+    "black>=24.10.0",
+    "flake8>=7.1.1",
+    "mypy>=1.13.0",
+    "isort>=5.13.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/jmtanguy/DroitFrancaisMCP"
+Documentation = "https://github.com/jmtanguy/DroitFrancaisMCP#readme"
+Repository = "https://github.com/jmtanguy/DroitFrancaisMCP"
+Issues = "https://github.com/jmtanguy/DroitFrancaisMCP/issues"
+
+[tool.setuptools]
+py-modules = [
+    "droit_francais_MCP",
+    "api_legifrance",
+    "api_judilibre",
+    "api_legifrance_query_builder",
+    "__version__",
+]
+
+[tool.black]
+line-length = 100
+target-version = ["py38", "py39", "py310", "py311"]
+
+[tool.pytest.ini_options]
+testpaths = ["."]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = [
+    "-v",
+    "--tb=short",
+    "--strict-markers",
+    "--color=yes",
+]
+markers = [
+    "integration: Tests d'intégration (nécessitent des clés API valides)",
+    "unit: Tests unitaires (mocks seulement)",
+    "slow: Tests lents",
+]
