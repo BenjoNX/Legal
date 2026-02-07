@@ -1,0 +1,8 @@
+{
+  "name": "legal-fr",
+  "version": "1.0.0",
+  "description": "Plugin juridique pour le droit français. Recherche dans Légifrance et JudiLibre, analyse de contrats, conformité RGPD, veille juridique et préparation de réunions — adapté au cadre légal français.",
+  "author": {
+    "name": "BenjoNX (adapté du plugin legal d'Anthropic)"
+  }
+}

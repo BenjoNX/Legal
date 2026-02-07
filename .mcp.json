@@ -1,0 +1,9 @@
+{
+  "mcpServers": {
+    "droit-francais": {
+      "type": "stdio",
+      "command": "/home/user/Legal/venv/bin/python",
+      "args": ["/home/user/Legal/droit_francais_MCP.py"]
+    }
+  }
+}

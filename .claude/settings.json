@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill",
+      "mcp__droit-francais__rechercher_legifrance",
+      "mcp__droit-francais__consulter_legifrance",
+      "mcp__droit-francais__rechercher_jurisprudence_judilibre",
+      "mcp__droit-francais__consulter_decision_judilibre",
+      "mcp__droit-francais__obtenir_taxonomie_judilibre"
+    ]
+  }
+}
