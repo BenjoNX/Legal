@@ -15,9 +15,14 @@ Remarques :
 import os
 import requests
 from datetime import datetime, timedelta, date
+from pathlib import Path
 from typing import Any, Dict, List, Optional
 from dotenv import load_dotenv
 from api_legifrance_query_builder import LegifranceQueryBuilder
+
+# Charger .env depuis le répertoire du script (pas le cwd)
+_SCRIPT_DIR = Path(__file__).resolve().parent
+load_dotenv(_SCRIPT_DIR / ".env", verbose=False)
 
 
 class LegifranceAPI:
@@ -30,7 +35,6 @@ class LegifranceAPI:
         Args:
             sandbox: Utiliser l'environnement sandbox (True) ou production (False)
         """
-        load_dotenv(verbose=False)
         if sandbox:
             self.client_id = os.getenv("PISTE_SANDBOX_CLIENT_ID")
             self.client_secret = os.getenv("PISTE_SANDBOX_CLIENT_SECRET")
