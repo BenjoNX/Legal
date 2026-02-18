@@ -39,13 +39,13 @@ except Exception as e:
     raise
 
 try:
-    legifranceapi = LegifranceAPI(sandbox=True)
+    legifranceapi = LegifranceAPI(sandbox=False)
 except Exception as e:
     logger.error(f"Erreur lors de l'initialisation de l'API LegiFrance: {e}")
     legifranceapi = None
 
 try:
-    judilibreapi = JudilibreAPI(sandbox=True)
+    judilibreapi = JudilibreAPI(sandbox=False)
 except Exception as e:
     logger.error(f"Erreur lors de l'initialisation de l'API Judilibre: {e}")
     judilibreapi = None
