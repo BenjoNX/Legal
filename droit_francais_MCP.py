@@ -12,8 +12,11 @@ Remarques :
 """
 
 import logging
+import os
 import sys
+from pathlib import Path
 from typing import Any, Dict, List, Optional, Union
+from dotenv import load_dotenv
 from fastmcp import FastMCP
 
 from api_judilibre import JudilibreAPI
@@ -22,6 +25,10 @@ from api_legifrance import LegifranceAPI
 # ============================================================================
 # CONFIGURATION ET INITIALISATION
 # ============================================================================
+
+# Charger .env depuis le répertoire du script
+_SCRIPT_DIR = Path(__file__).resolve().parent
+load_dotenv(_SCRIPT_DIR / ".env", verbose=False)
 
 logging.basicConfig(
     level=logging.WARNING,
@@ -32,6 +39,9 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
+# Mode sandbox/production configurable via .env (PISTE_MODE=sandbox|production)
+_USE_SANDBOX = os.getenv("PISTE_MODE", "production").lower() == "sandbox"
+
 try:
     mcp = FastMCP("FR Légifrance et Judilibre MCP Server - Droit Français Officiel")
 except Exception as e:
@@ -39,13 +49,13 @@ except Exception as e:
     raise
 
 try:
-    legifranceapi = LegifranceAPI(sandbox=False)
+    legifranceapi = LegifranceAPI(sandbox=_USE_SANDBOX)
 except Exception as e:
     logger.error(f"Erreur lors de l'initialisation de l'API LegiFrance: {e}")
     legifranceapi = None
 
 try:
-    judilibreapi = JudilibreAPI(sandbox=False)
+    judilibreapi = JudilibreAPI(sandbox=_USE_SANDBOX)
 except Exception as e:
     logger.error(f"Erreur lors de l'initialisation de l'API Judilibre: {e}")
     judilibreapi = None
